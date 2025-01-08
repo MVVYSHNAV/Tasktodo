@@ -2,10 +2,11 @@ import React, { useState, useEffect } from 'react';
 import Logo from '../assets/logo.png';
 
 const Header = () => {
-  const [theme, setTheme] = useState('dark');
+  const [theme, setTheme] = useState((JSON.parse(localStorage.getItem("theme")) || "light"));
 
   // Update the document class when theme changes
   useEffect(() => {
+    localStorage.setItem("theme", JSON.stringify(theme))
     document.documentElement.classList.remove('light', 'dark', 'purple', 'blue');
     document.documentElement.classList.add(theme);
   }, [theme]);
